@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Link a manifest.json file  -->
+    <link rel="manifest" href="../manifest.json">
+    <link rel="stylesheet" href="../Bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="css/style.css">
+    <!-- Option 1: Include in HTML -->
+</head>
+
+<body>
+    <div class="container-fluid body">
+        <div class="row position-absolute w-100">
+            <div class="col-6">
+                <div id="back" class=""><a href="../Difficulty Page/text.html">Back</a></div>
+            </div>
+            <div class="col-6 text-end">
+                <div id="scoreBox" class="">Score: 0</div>
+            </div>
+        </div>
+        <div class="row highscoreBoxparent position-absolute w-100">
+            <div class="col-6">
+                <div id="restart">Restart</div>
+            </div>
+            <div class="col-6 text-end">
+                <div id="hiscoreBox">HiScore: 0</div>
+            </div>
+        </div>
+        <div class="row boardparent d-flex justify-content-center align-items-center">
+            <div class="col-12 d-flex justify-content-center">
+                <div id="board"></div>
+            </div>
+        </div>
+        <div class="row arrowupparent">
+            <div class="col-12 fs-3 arrowupparentcol text-center">
+                <i class="bi bi-arrow-up-circle-fill arrowup" onclick="movebutton('ArrowUp');"></i>
+            </div>
+        </div>
+        <div class="row arrowsparent">
+            <div class="col-12 arrowsparentcol text-center">
+                <span class="fs-3 arrowleft" style="margin-right: 5vw;">
+                    <i class="bi bi-arrow-left-circle-fill" onclick="movebutton('ArrowLeft');"></i>
+                </span>
+                <span class="fs-3 arrowright" style="margin-left: 5vw;">
+                    <i class="bi bi-arrow-right-circle-fill" onclick="movebutton('ArrowRight');"></i>
+                </span>
+            </div>
+        </div>
+        <div class="row arrowdownparent">
+            <div class="col-12 fs-3 arrowdownparentcol text-center">
+                <i class="bi bi-arrow-down-circle-fill" style="margin-left: 10px;" onclick="movebutton('ArrowDown');"></i>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="../Bootstrap/bootstrap.bundle.min.js"></script>
+<script src="js/index.js"></script>
+<script>
+    var restart = document.getElementById('restart').onclick = function(){
+        location.href = location.href;
+    }
+    window.addEventListener('load',function() {
+        if(screen.orientation.type == 'landscape-primary' && (screen.orientation.angle == 90 || screen.orientation.angle == 180)){
+            document.getElementsByClassName('arrowupparentcol')[0].classList.replace('text-center','text-end');
+            document.getElementsByClassName('arrowupparentcol')[0].classList.replace('fs-3','fs-2');
+            document.getElementsByClassName('arrowupparentcol')[0].style.marginTop = '-3rem';
+            document.getElementsByClassName('arrowup')[0].style.marginRight = '5vw';
+            document.getElementsByClassName('arrowsparentcol')[0].classList.replace('text-center','text-start');
+            document.getElementsByClassName('arrowleft')[0].classList.replace('fs-3','fs-2');
+            document.getElementsByClassName('arrowright')[0].classList.replace('fs-3','fs-2');
+            document.getElementsByClassName('arrowright')[0].style.marginLeft = '77vw';
+            document.getElementsByClassName('arrowleft')[0].style.marginRight = '0';
+            document.getElementsByClassName('arrowleft')[0].style.marginLeft = '6vw';
+            document.getElementsByClassName('arrowdownparentcol')[0].classList.replace('text-center','text-start');
+            document.getElementsByClassName('arrowdownparentcol')[0].classList.replace('fs-3','fs-2');
+            document.getElementsByClassName('arrowdownparentcol')[0].classList.replace('col-12','col-2');
+            document.getElementsByClassName('arrowdownparentcol')[0].style.marginLeft = '5vw';
+            document.getElementsByClassName('arrowdownparentcol')[0].style.marginTop = '-5.5rem';
+
+        }else{
+            document.getElementsByClassName('arrowupparentcol')[0].classList.replace('text-end','text-center');
+            document.getElementsByClassName('arrowupparentcol')[0].classList.replace('fs-2','fs-3');
+            document.getElementsByClassName('arrowupparentcol')[0].style.marginTop = '0';
+            document.getElementsByClassName('arrowup')[0].style.marginRight = '0';
+            document.getElementsByClassName('arrowsparentcol')[0].classList.replace('text-start','text-center');
+            document.getElementsByClassName('arrowleft')[0].classList.replace('fs-2','fs-3');
+            document.getElementsByClassName('arrowright')[0].classList.replace('fs-2','fs-3');
+            document.getElementsByClassName('arrowright')[0].style.marginLeft = '5vw';
+            document.getElementsByClassName('arrowleft')[0].style.marginRight = '5vw';
+            document.getElementsByClassName('arrowleft')[0].style.marginLeft = '0';
+            document.getElementsByClassName('arrowdownparentcol')[0].classList.replace('text-start','text-center');
+            document.getElementsByClassName('arrowdownparentcol')[0].classList.replace('fs-2','fs-3');
+            document.getElementsByClassName('arrowdownparentcol')[0].classList.replace('col-2','col-12');
+            document.getElementsByClassName('arrowdownparentcol')[0].style.marginLeft = '0';
+            document.getElementsByClassName('arrowdownparentcol')[0].style.marginTop = '0';
+        }
+    })
+    screen.orientation.addEventListener('change',function(e) {
+        if(screen.orientation.type == 'landscape-primary' && (screen.orientation.angle == 90 || screen.orientation.angle == 180)){
+            document.getElementsByClassName('arrowupparentcol')[0].classList.replace('text-center','text-end');
+            document.getElementsByClassName('arrowupparentcol')[0].classList.replace('fs-3','fs-2');
+            document.getElementsByClassName('arrowupparentcol')[0].style.marginTop = '-3rem';
+            document.getElementsByClassName('arrowup')[0].style.marginRight = '5vw';
+            document.getElementsByClassName('arrowsparentcol')[0].classList.replace('text-center','text-start');
+            document.getElementsByClassName('arrowleft')[0].classList.replace('fs-3','fs-2');
+            document.getElementsByClassName('arrowright')[0].classList.replace('fs-3','fs-2');
+            document.getElementsByClassName('arrowright')[0].style.marginLeft = '77vw';
+            document.getElementsByClassName('arrowleft')[0].style.marginRight = '0';
+            document.getElementsByClassName('arrowleft')[0].style.marginLeft = '6vw';
+            document.getElementsByClassName('arrowdownparentcol')[0].classList.replace('text-center','text-start');
+            document.getElementsByClassName('arrowdownparentcol')[0].classList.replace('fs-3','fs-2');
+            document.getElementsByClassName('arrowdownparentcol')[0].classList.replace('col-12','col-2');
+            document.getElementsByClassName('arrowdownparentcol')[0].style.marginLeft = '5vw';
+            document.getElementsByClassName('arrowdownparentcol')[0].style.marginTop = '-5.5rem';
+
+        }else{
+            document.getElementsByClassName('arrowupparentcol')[0].classList.replace('text-end','text-center');
+            document.getElementsByClassName('arrowupparentcol')[0].classList.replace('fs-2','fs-3');
+            document.getElementsByClassName('arrowupparentcol')[0].style.marginTop = '0';
+            document.getElementsByClassName('arrowup')[0].style.marginRight = '0';
+            document.getElementsByClassName('arrowsparentcol')[0].classList.replace('text-start','text-center');
+            document.getElementsByClassName('arrowleft')[0].classList.replace('fs-2','fs-3');
+            document.getElementsByClassName('arrowright')[0].classList.replace('fs-2','fs-3');
+            document.getElementsByClassName('arrowright')[0].style.marginLeft = '5vw';
+            document.getElementsByClassName('arrowleft')[0].style.marginRight = '5vw';
+            document.getElementsByClassName('arrowleft')[0].style.marginLeft = '0';
+            document.getElementsByClassName('arrowdownparentcol')[0].classList.replace('text-start','text-center');
+            document.getElementsByClassName('arrowdownparentcol')[0].classList.replace('fs-2','fs-3');
+            document.getElementsByClassName('arrowdownparentcol')[0].classList.replace('col-2','col-12');
+            document.getElementsByClassName('arrowdownparentcol')[0].style.marginLeft = '0';
+            document.getElementsByClassName('arrowdownparentcol')[0].style.marginTop = '0';
+        }
+    })
+</script>
+
+</html>
